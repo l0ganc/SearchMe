@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>logan</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="fun.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
+
+
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular-messages.min.js"></script>
+    <script src="https://gitcdn.link/repo/angular/bower-material/master/angular-material.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.5.5/angular-sanitize.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap.js"></script>
+
+
+
+
+</head>
+<body>
+<div  class="searchForm"  style="height:375px" ng-app="firstApp" ng-controller="formController">
+    <h4 style="text-align: center">Travel and Entertainment Search</h4>
+
+    <form action="" role="form" id="form" class="form-horizontal" style="margin-left: 86px" method="get" ng-submit="processForm()">
+
+        <div class="form-group">
+            <label for="keyword" class="col-sm-2 control-lable">keyword*</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="keyword" ng-model="formData.keyword"  name="keyword" data-bv-message="Please enter a keyword" required
+                       data-bv-notempty-message="" style="width: 386px; margin-left: 21px;">
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="Category" class="col-sm-2 control-lable">Category</label>
+            <div class="col-sm-10">
+                <select name="category" class="form-control" id="Category" ng-model="formData.category" style="margin-left: 23px; width: 270px;">
+                    <option value="Default">Default</option>
+                    <option value="Airport">Airport</option>
+                    <option value="Amusement_Park">Amusement Park</option>
+                    <option value="Aquarium">Aquarium</option>
+                    <option value="Art_Gallery">Art Gallery</option>
+                    <option value="Bakery">Bakery</option>
+                    <option value="Bar">Bar</option>
+                    <option value="Beauty_Salon">Beauty Salon</option>
+                    <option value="Bowling_Alley">Bowling Alley</option>
+                    <option value="Bus_Station">Bus Station</option>
+                    <option value="Cafe">Cafe</option>
+                    <option value="Campground">Campground</option>
+                    <option value="Car_Rental">Car Rental</option>
+                    <option value="Casino">Casino</option>
+                    <option value="Lodging">Lodging</option>
+                    <option value="Movie_Theater">Movie Theater</option>
+                    <option value="Museum">Museum</option>
+                    <option value="Night_Club">Night Club</option>
+                    <option value="Park">Park</option>
+                    <option value="Parking">Parking</option>
+                    <option value="Restaurant">Restaurant</option>
+                    <option value="Shopping_Mall">Shopping Mall</option>
+                    <option value="Stadium">Stadium</option>
+                    <option value="Subway_Station">Subway Station</option>
+                    <option value="Taxi_Stand">Taxi Stand</option>
+                    <option value="Train_Station">Train Station</option>
+                    <option value="Transit_Station">Transit Station</option>
+                    <option value="Travel_Agency">Travel Agency</option>
+                    <option value="Zoo">Zoo</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Distance" class="col-sm-2 control-lable">Distance(miles)</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control"  id="Distance" name="distance" ng-model="formData.distance" value=""  placeholder="10" style="width: 270px; margin-left: 23px;">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-lable">From*</label>
+            <div class="col-sm-10">
+                <ul>
+                    <li><input type="radio" name="far" id="here" checked value="Here" onclick="gd()"> Current location</li>
+                    <li>
+                        <input type="radio" name="far" id="self"  value="change" onclick="text_check()"> Other. Please specify
+                    </li>
+                    <li style="margin-left: 18px">
+                        <div id="locationField">
+                            <input type="text" class="form-control" style="width: 375px;" name="location" ng-model="formData.location" id="autocomplete" name="location" placeholder="Enter a location" required disabled value="">
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container">
+            <button type="submit" id="search" name="search"  class="btn btn-primary" disabled>
+                <span class="glyphicon glyphicon-search"></span>Search</button>
+            <button type="reset" class="btn btn-default">Clear</button>
+        </div>
+
+        <input type="text" id="lat" name="lat" value="" hidden>
+        <input type="text" id="lon" name="lon" value="" hidden>
+    </form>
+
+    <pre>{{formData}}</pre>
+
+</div>
+<div style="margin-top: 35px; text-align:center;">
+    <button type="button" class="btn btn-primary">Results</button>
+    <button type="button" class="btn btn-default">Favorites</button>
+</div>
+
+<div id="result_table"></div>
+<script type="text/javascript">
+    // This example displays an address form, using the autocomplete feature
+    // of the Google Places API to help users fill in the information.
+
+    // This example requires the Places library. Include the libraries=places
+    // parameter when you first load the API. For example:
+    // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+    var placeSearch, autocomplete;
+    var componentForm = {
+        street_number: 'short_name',
+        route: 'long_name',
+        locality: 'long_name',
+        administrative_area_level_1: 'short_name',
+        country: 'long_name',
+        postal_code: 'short_name'
+    };
+
+    function initAutocomplete() {
+        // Create the autocomplete object, restricting the search to geographical
+        // location types.
+        autocomplete = new google.maps.places.Autocomplete(
+            /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+            {types: ['geocode']});
+
+        // When the user selects an address from the dropdown, populate the address
+        // fields in the form.
+        autocomplete.addListener('place_changed', fillInAddress);
+    }
+
+    function fillInAddress() {
+
+    }
+
+    // Bias the autocomplete object to the user's geographical location,
+    // as supplied by the browser's 'navigator.geolocation' object.
+
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoAhH36BoUXnvwwe4WS38Zx_tShnv-p8c&libraries=places&callback=initAutocomplete"
+        async defer></script>
+
+
+<script>
+    var firstApp = angular.module('firstApp',[]);
+
+    function formController($scope, $http) {
+        $scope.formData = {};
+        $scope.processForm = function() {
+            $http({
+                method: 'GET',
+                url : 'http://csci571hw8-env.us-east-1.elasticbeanstalk.com/',
+                data : $.param($scope.formData),
+                headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+            })
+                .success(function(data) {
+                    console.log(data);
+                });
+        };
+    }
+</script>
+</body>
+</html>
